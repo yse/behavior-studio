@@ -140,6 +140,7 @@ def _readConfig(args):
         print('')
         return False
 
+    globals.loadedApplicationConfigFile = configFile
     if err:
         print('')
 
@@ -266,6 +267,9 @@ def main(argv):
                 appArgs.config_file_default = False
             elif opt in ('-d', '--debug'):
                 appArgs.debug = True
+
+    if len(args)>0:
+        appArgs.project_for_opening = args[0]
 
     if not _readConfig(appArgs):  # read icons path
         mb = QMessageBox(QMessageBox.Critical, 'Configuration Error',
